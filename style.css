@@ -1,0 +1,107 @@
+/* -----------------------------------------
+   GLOBAL EVENT THEME — DARK + GOLD
+------------------------------------------ */
+body {
+    margin: 0;
+    padding: 0;
+    background: #0d0d0d;
+    font-family: "Poppins", sans-serif;
+    color: white;
+}
+
+.center-box {
+    width: 400px;
+    margin: 70px auto;
+    padding: 30px;
+    background: #111;
+    border: 1px solid gold;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    text-align: center;
+}
+
+input {
+    width: 90%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid gold;
+    margin-top: 15px;
+    font-size: 16px;
+    outline: none;
+    background: #000;
+    color: gold;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px 35px;
+    border-radius: 6px;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    background: gold;
+    color: black;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #ffef9f;
+}
+
+.title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: gold;
+}
+
+.timer {
+    font-size: 32px;
+    margin: 20px 0;
+    color: #ffcc00;
+    text-shadow: 0 0 10px gold;
+}
+
+.question-box {
+    background: #111;
+    border: 1px solid gold;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+}
+
+textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid gold;
+    background: #000;
+    color: gold;
+    outline: none;
+    font-size: 15px;
+    min-height: 120px;
+}
+
+.status {
+    font-size: 20px;
+    color: gold;
+}
+
+.table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    border: 1px solid gold;
+    padding: 10px;
+    text-align: center;
+}
+
+.table th {
+    background: #222;
+}
+
+.table tr:hover {
+    background: #333;
+}
