@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Level 1</title>
+    <link rel="stylesheet" href="../style.css">
+
+    <script type="module">
+        import { saveLevelTime } from "../script.js";
+
+        const reg = localStorage.getItem("regno");
+        if (!reg) window.location.href = "login.html";
+
+        let start = Date.now();
+
+        const answers = [
+            "a=5\nif a>3:\n    print(a)",
+            "for i in range(3):\n    print(i)",
+            "def add(x, y):\n    return x+y",
+            "n=10\nwhile n>0:\n    n-=1\n    print(n)",
+            "for c in \"hello\":\n    print(c)"
+        ];
+
+        window.submitLevel1 = async function () {
+            let correct = true;
+
+            for (let i = 1; i <= 5; i++) {
+                let user = document.getElementById("q" + i).value.trim();
+                if (user !== answers[i-1]) correct = false;
+            }
+
+            if (!correct) {
+                alert("Some answers are incorrect.");
+                return;
+            }
+
+            let timeTaken = Math.floor((Date.now() - start) / 1000);
+
+            await saveLevelTime(reg, 1, timeTaken);
+
+            window.location.href = "level2.html";
+        }
+    </script>
+</head>
+
+<body>
+    <h1>LEVEL 1</h1>
+
+    <div class="question-box">
+        <p>Fix the code (2 mistakes)</p>
+        <textarea id="q1">a=5
+if a>3 print(a)</textarea>
+    </div>
+
+    <div class="question-box">
+        <textarea id="q2">for i in range(3) print(i)</textarea>
+    </div>
+
+    <div class="question-box">
+        <textarea id="q3">def add(x y): return x+y</textarea>
+    </div>
+
+    <div class="question-box">
+        <textarea id="q4">n=10
+while n>0
+n-=1
+print(n)</textarea>
+    </div>
+
+    <div class="question-box">
+        <textarea id="q5">for c in "hello"
+print(c)</textarea>
+    </div>
+
+    <button onclick="submitLevel1()">Submit Level 1</button>
+
+</body>
+</html>
