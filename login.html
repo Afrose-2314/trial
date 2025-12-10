@@ -1,41 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Competitor Login</title>
+    <title>Login - Coding Event</title>
     <link rel="stylesheet" href="../style.css">
-    <script src="../firebase.js"></script>
+    <script type="module">
+        import { login } from "../script.js";
+
+        window.doLogin = async function () {
+            const reg = document.getElementById("regno").value.trim();
+            if (reg.length === 0) {
+                alert("Enter Register Number");
+                return;
+            }
+            await login(reg);
+            localStorage.setItem("regno", reg);
+            window.location.href = "wait.html";
+        }
+    </script>
 </head>
-
 <body>
-<div class="center-box">
-    <div class="title">Register Number Login</div>
-
-    <input id="reg" placeholder="Enter Register Number">
-
-    <button onclick="login()">Login</button>
-</div>
-
-<script>
-function login() {
-    let reg = document.getElementById("reg").value.trim();
-
-    if (reg === "") {
-        alert("Enter Register Number");
-        return;
-    }
-
-    db.ref("competitors/" + reg).set({
-        regno: reg,
-        status: "waiting",
-        level: 0,
-        startTime: null,
-        finishTime: null
-    });
-
-    localStorage.setItem("regno", reg);
-
-    window.location.href = "wait.html";
-}
-</script>
+    <div class="container">
+        <h2>Enter Register Number</h2>
+        <input type="text" id="regno" placeholder="22BCAXXXX"><br>
+        <button onclick="doLogin()">Login</button>
+    </div>
 </body>
 </html>
