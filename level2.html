@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Level 2</title>
+    <link rel="stylesheet" href="../style.css">
+
+    <script type="module">
+        import { saveLevelTime } from "../script.js";
+
+        const reg = localStorage.getItem("regno");
+        if (!reg) window.location.href = "login.html";
+
+        let start = Date.now();
+
+        const answers = [
+`nums=[1,2,3]
+for n in nums:
+    print(n)`,
+
+`def mul(a, b):
+    return a*b
+print(mul(3, 4))`,
+
+`for i in range(5):
+    if i%2==0:
+        print(i)`,
+
+`x=10
+if x==10:
+    print("Ten")`,
+
+`list1=[5,4,3]
+list1.append(2)
+print(list1)`,
+
+`n=5
+while n>=0:
+    print(n)
+    n-=1`,
+
+`for c in "python":
+    print(c.upper())`
+        ];
+
+        window.submitLevel2 = async function () {
+            let correct = true;
+
+            for (let i = 1; i <= 7; i++) {
+                let user = document.getElementById("q" + i).value.trim();
+                if (user !== answers[i-1]) correct = false;
+            }
+
+            if (!correct) {
+                alert("Some answers are incorrect.");
+                return;
+            }
+
+            let time = Math.floor((Date.now() - start) / 1000);
+
+            await saveLevelTime(reg, 2, time);
+
+            window.location.href = "final.html";
+        }
+    </script>
+</head>
+
+<body>
+    <h1>LEVEL 2</h1>
+
+    <div class="question-box"><textarea id="q1">nums=[1,2,3]
+for n in nums
+print(n)</textarea></div>
+
+    <div class="question-box"><textarea id="q2">def mul(a b):
+return a*b
+print(mul 3,4))</textarea></div>
+
+    <div class="question-box"><textarea id="q3">for i in range 5:
+if i%2=0
+print(i)</textarea></div>
+
+    <div class="question-box"><textarea id="q4">x=10
+if x=10
+print("Ten"</textarea></div>
+
+    <div class="question-box"><textarea id="q5">list1=[5,4,3]
+list1.append 2
+print list1</textarea></div>
+
+    <div class="question-box"><textarea id="q6">n=5
+while n>=0
+print(n)
+n-</textarea></div>
+
+    <div class="question-box"><textarea id="q7">for c in "python"
+print(c upper())</textarea></div>
+
+    <button onclick="submitLevel2()">Submit Level 2</button>
+</body>
+</html>
