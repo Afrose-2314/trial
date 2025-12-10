@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="../firebase.js"></script>
+</head>
+
+<body>
+
+<div class="title" style="text-align:center;margin-top:20px;">Live Leaderboard</div>
+
+<table class="table" id="board">
+    <tr>
+        <th>Register No</th>
+        <th>Level</th>
+        <th>Total Time (mins)</th>
+    </tr>
+</table>
+
+<script>
+db.ref("competitors").on("value", snap => {
+    let data = snap.val();
+    let rows = "";
+
+    for (let k in data) {
+        let c = data[k];
+        let timeTaken = c.finishTime ? ((c.finishTime - c.startTime)/60000).toFixed(2) : "-";
+
+        rows += `
+        <tr>
+            <td>${c.regno}</td>
+            <td>${c.level}</td>
+            <td>${timeTaken}</td>
+        </tr>`;
+    }
+
+    document.getElementById("board").innerHTML = `
+    <tr>
+        <th>Register No</th>
+        <th>Level</th>
+        <th>Total Time (mins)</th>
+    </tr>` + rows;
+});
+</script>
+
+</body>
+</html>
