@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Waiting Room</title>
+    <title>Waiting</title>
     <link rel="stylesheet" href="../style.css">
-    <script src="../firebase.js"></script>
+    <script type="module">
+        import { waitForStart } from "../script.js";
+
+        const reg = localStorage.getItem("regno");
+        if (!reg) window.location.href = "login.html";
+
+        waitForStart(() => {
+            window.location.href = "level1.html";
+        });
+    </script>
 </head>
-
 <body>
+    <div class="container">
+        <h2>Waiting for Admin to Start...</h2>
+        <p>Your Register No: <b id="rn"></b></p>
+    </div>
 
-<div class="center-box">
-    <div class="title">Please Wait...</div>
-    <div class="status">Admin has not started the event yet.</div>
-</div>
-
-<script>
-let reg = localStorage.getItem("regno");
-
-db.ref("event/status").on("value", s => {
-    if (s.val() === "started") {
-        window.location.href = "level1.html";
-    }
-});
-</script>
-
+    <script>
+        document.getElementById("rn").innerText = localStorage.getItem("regno");
+    </script>
 </body>
 </html>
