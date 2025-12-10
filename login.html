@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Competitor Login</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="../firebase.js"></script>
+</head>
+
+<body>
+<div class="center-box">
+    <div class="title">Register Number Login</div>
+
+    <input id="reg" placeholder="Enter Register Number">
+
+    <button onclick="login()">Login</button>
+</div>
+
+<script>
+function login() {
+    let reg = document.getElementById("reg").value.trim();
+
+    if (reg === "") {
+        alert("Enter Register Number");
+        return;
+    }
+
+    db.ref("competitors/" + reg).set({
+        regno: reg,
+        status: "waiting",
+        level: 0,
+        startTime: null,
+        finishTime: null
+    });
+
+    localStorage.setItem("regno", reg);
+
+    window.location.href = "wait.html";
+}
+</script>
+</body>
+</html>
