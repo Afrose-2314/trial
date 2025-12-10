@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Waiting Room</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="../firebase.js"></script>
+</head>
+
+<body>
+
+<div class="center-box">
+    <div class="title">Please Wait...</div>
+    <div class="status">Admin has not started the event yet.</div>
+</div>
+
+<script>
+let reg = localStorage.getItem("regno");
+
+db.ref("event/status").on("value", s => {
+    if (s.val() === "started") {
+        window.location.href = "level1.html";
+    }
+});
+</script>
+
+</body>
+</html>
