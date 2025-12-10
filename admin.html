@@ -3,35 +3,22 @@
 <head>
     <title>Admin Panel</title>
     <link rel="stylesheet" href="../style.css">
-    <script src="../firebase.js"></script>
+
+    <script type="module">
+        import { adminStart } from "../script.js";
+
+        window.startEvent = async function () {
+            await adminStart();
+            window.location.href = "leaderboard.html";
+        }
+    </script>
 </head>
 
 <body>
-<div class="center-box">
-    <div class="title">Admin Panel</div>
-
-    <button onclick="startEvent()">START EVENT</button>
-    <button onclick="resetEvent()" style="background:#ff4444;color:white;margin-top:15px;">
-        RESET EVENT
-    </button>
-
-    <br><br>
-    <button onclick="location.href='leaderboard.html'">Go to Leaderboard</button>
-</div>
-
-<script>
-function startEvent() {
-    db.ref("event").set({
-        status: "started",
-        startTime: Date.now()
-    });
-    alert("Event Started!");
-}
-
-function resetEvent() {
-    db.ref().remove();
-    alert("Event Reset!");
-}
-</script>
+    <div class="container">
+        <h1>ADMIN PANEL</h1>
+        <h3>Click to Start Competition</h3>
+        <button onclick="startEvent()">START EVENT</button>
+    </div>
 </body>
 </html>
