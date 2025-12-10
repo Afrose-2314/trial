@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Completed</title>
+    <link rel="stylesheet" href="../style.css">
+
+    <script type="module">
+        import { db, ref, get } from "../firebase.js";
+
+        const reg = localStorage.getItem("regno");
+        if (!reg) window.location.href = "login.html";
+
+        get(ref(db, "competitors/" + reg)).then(snap => {
+            const d = snap.val();
+            let total = (d.level1 || 0) + (d.level2 || 0);
+            document.getElementById("time").innerText = total + " seconds";
+        });
+    </script>
+</head>
+
+<body>
+    <h1>✨ Congratulations!</h1>
+    <h2>Your Total Time:</h2>
+    <h1 id="time"></h1>
+</body>
+</html>
